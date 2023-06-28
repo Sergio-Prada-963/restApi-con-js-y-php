@@ -1,4 +1,4 @@
-import { getClientes, nuevoCliente } from "./API.js";
+import { getClientes, nuevoCliente, deleteCliente } from "./API.js";
 
 document.addEventListener('DOMContentLoaded',()=>{
     cargaClientes();
@@ -18,6 +18,7 @@ async function cargaClientes(){
             <td>${nombre_representante}</td>
             <td>${email_contacto}</td>
             <td>${telefono_contacto}</td>
+            <td><button type="button" class="btn btn-danger delete" id="${id_constructora}">Delete</button></td>
         </tr>
         `
     });
@@ -40,4 +41,23 @@ function newCliente(e){
     }
     console.log(registro);
     nuevoCliente(registro)
+    // if(validation(registro)){
+    //     alert("todos los datos son obligatorios")
+    // }return nuevoCliente(registro)
+}
+// function validation(Objecto){
+//     return !Object.values(Objecto).every(element=>element == '')
+// }
+
+const eliminar = document.querySelector('#datosClientes')
+eliminar.addEventListener('click',borrar)
+
+function borrar(e){
+    if(e.target.classList.contains('delete')){
+        const idcliente = e.target.getAttribute('id');
+        const confir = confirm("desea Eliminarlo?");
+        if(confir){
+            deleteCliente(idcliente)
+        }
+    }
 }

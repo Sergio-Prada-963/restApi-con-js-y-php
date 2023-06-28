@@ -19,5 +19,11 @@ switch ($_GET["op"]){
     case "insert":
         $datos = $alquilar->insert_cliente($body["constructora"],$body["nitConstructora"],$body["nombreRepre"],$body["email"],$body["telefono"]);
         echo json_encode("insertado correctamente");
+    break;
+
+    case "delete":
+        $datos=$alquilar->delete_cliente($_GET["id"]);
+        echo json_encode("Cliente Eliminado");
+    break;
     }
 ?>
